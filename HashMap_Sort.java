@@ -40,7 +40,7 @@ public class HashMap_Sort {
         list.addAll(entrys); // 也可以通过构造函数的参数传入
         System.out.println(list); // [0.0=3, 4.5=-1, 3.0=0, 1.5=2, 2.2=1]
 
-        // 排序, 调用Collections.sort()方法, 注意：需要重写 Comparator<T>类 中的 compare()方法
+        // 排序, 调用Collections.sort(List<T> list, Comparator<? super T> c)方法, 注意：需要重写 Comparator<T>类 中的 compare()方法
         Collections.sort(list, new Comparator<Map.Entry<Double, Integer>>() {
             @Override
             public int compare(Entry<Double, Integer> o1, Entry<Double, Integer> o2) {
