@@ -1,54 +1,56 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class Sort_test {
     public static void main(String[] args) {
-        int[] array = {-1, -2, 0, 1, 2, 3, 1};
-
-        System.out.println("冒泡排序：");
+        int[] array = {1, 2, 3, 2, 3, 1, -4, 5, 7, 6, -4, 1};
         int[] arr = Arrays.copyOf(array, array.length);
-        Sort_test.bubbleSort(arr);
-        Sort_test.printArray(arr);
+        System.out.println("冒泡排序：");
+        BubbleSort(arr);
+        printArray(arr);
 
-        System.out.println("===================");
-        System.out.println("选择排序：");
         arr = Arrays.copyOf(array, array.length);
-        Sort_test.selectionSort(arr);
-        Sort_test.printArray(arr);
+        System.out.println("选择排序: ");
+        selectionSort(arr);
+        printArray(arr);
 
-        System.out.println("===================");
+        arr = Arrays.copyOf(array, array.length);
         System.out.println("插入排序：");
-        arr = Arrays.copyOf(array, array.length);
-        Sort_test.insertSort(arr);
-        Sort_test.printArray(arr);
+        insertSort(arr);
+        printArray(arr);
 
-        System.out.println("===================");
+        arr = Arrays.copyOf(array, array.length);
         System.out.println("快速排序：");
-        arr = Arrays.copyOf(array, array.length);
-        Sort_test.quickSort(arr, 0, arr.length - 1);
-        Sort_test.printArray(arr);
+        quickSort(arr, 0, arr.length - 1);
+        printArray(arr);
 
-        System.out.println("===================");
+        arr = Arrays.copyOf(array, array.length);
         System.out.println("堆排序：");
-        arr = Arrays.copyOf(array, array.length);
-        Sort_test.heapSort(arr);
-        Sort_test.printArray(arr);
+        heapSort(arr);
+        printArray(arr);
 
-        System.out.println("===================");
-        System.out.println("归并排序：");
         arr = Arrays.copyOf(array, array.length);
-        Sort_test.mergeSort(arr, 0, arr.length - 1);
-        Sort_test.printArray(arr);
+        System.out.println("归并排序：");
+        mergeSort(arr, 0, arr.length - 1);
+        printArray(arr);
+
+        arr = Arrays.copyOf(array, array.length);
+        System.out.println("桶排序：");
+        bucketSort(arr, 3);
+        printArray(arr);
     }
 
     public static void printArray(int[] array){
-        for(int i = 0; i < array.length; i++){
-            System.out.print(array[i] + " ");
+        for(int i : array){
+            System.out.print(i + " ");
         }
         System.out.println();
+        System.out.println("===============================");
     }
 
     // 冒泡排序
-    public static void bubbleSort(int array[]){
+    public static void BubbleSort(int[] array){
         for(int i = 0; i < array.length - 1; i++){
             for(int j = 0; j < array.length - 1 - i; j++){
                 if(array[j] > array[j+1]){
@@ -61,27 +63,30 @@ public class Sort_test {
     }
 
     // 选择排序
-    public static void selectionSort(int array[]){
+    public static void selectionSort(int[] array){
         for(int i = 0; i < array.length - 1; i++){
             int minIndex = i;
-            for(int j = i + 1; j < array.length; j++){
+            for(int j = minIndex; j < array.length; j++){
                 if(array[j] < array[minIndex]){
                     minIndex = j;
                 }
             }
-            int temp = array[i];
-            array[i] = array[minIndex];
-            array[minIndex] = temp;
+
+            if(minIndex != i){
+                int temp = array[i];
+                array[i] = array[minIndex];
+                array[minIndex] = temp;
+            }
         }
     }
 
     // 插入排序
-    public static void insertSort(int array[]){
-        for(int i = 1; i < array.length; i++){
-            if(array[i] < array[i-1]){
-                int temp = array[i];
-                for(int j = i; j >= 0; j--){
-                    if(j > 0 && array[j-1] > temp){
+    public static void insertSort(int[] array){
+        for(int i = 0; i < array.length - 1; i++){
+            if(array[i+1] < array[i]){
+                int temp = array[i+1];
+                for(int j = i + 1; j >= 0; j--){
+                    if(j > 0 && temp < array[j-1]){
                         array[j] = array[j-1];
                     }else{
                         array[j] = temp;
@@ -93,91 +98,85 @@ public class Sort_test {
     }
 
     // 快速排序
-    public static void quickSort(int[] array, int low, int high){
-        if(low >= high){
+    public static void quickSort(int[] array, int left, int right){
+        if(left >= right){
             return;
         }
 
-        int left = low;
-        int right = high;
+        int first = left;
+        int last = right;
         int temp = array[left];
 
-        while(left < right){
-            while(left < right && array[right] >= temp){
-                right--;
+        while(first < last){
+            while(first < last && array[last] >= temp){
+                last--;
             }
-            if(left < right){
-                array[left++] = array[right];
+            if(first < last){
+                array[first++] = array[last];
             }
-            while(left < right && array[left] <= temp){
-                left++;
+
+            while(first < last && array[first] <= temp){
+                first++;
             }
-            if(left < right){
-                array[right--] = array[left];
+            if(first < last){
+                array[last--] = array[first];
             }
         }
 
-        array[left] = temp;
+        array[first] = temp;
 
-        quickSort(array, low, left - 1);
-        quickSort(array, left + 1, high);
+        quickSort(array, left, first - 1);
+        quickSort(array, first + 1, right);
     }
 
     // 堆排序
     public static void heapSort(int[] array){
-        if(array == null || array.length == 0){
+        if(array == null || array.length <= 1){
             return;
         }
 
-        int len = array.length;
-
         // 构建大顶堆
-        buildMaxHeap(array, len);
-
-        // 交换末端元素和堆顶元素，然后调整最大堆
-        for(int i = len - 1; i > 0; i--){
+        buildMaxHeap(array, array.length);
+        int len = array.length;
+        // 把大顶堆的堆顶依次与当前的最后一个元素交换，交换后调整大顶堆
+        for(int i = array.length - 1; i > 1; i--){
             int temp = array[i];
             array[i] = array[0];
             array[0] = temp;
-            len--;
-            heapify(array, 0, len);
+
+            heapify(array, 0, --len);
         }
     }
 
-    // 构建最大堆
+    // 构建大顶堆
     public static void buildMaxHeap(int[] array, int len){
-        // 从最后一个非叶节点开始往前构建
+        // 从最后一个非叶子结点开始往前构建
         for(int i = (len >> 1) - 1; i >= 0; i--){
+            // 调整堆
             heapify(array, i, len);
         }
     }
 
-    // 调整最大堆
+    // 调整堆
     public static void heapify(int[] array, int i, int len){
-        // 左孩子索引
-        int left = 2 * i + 1;
-        // 右孩子索引
-        int right = 2 * i + 2;
-        // 保存最大值索引，假设父结点是最大值
+        int leftChild = 2 * i + 1;
+        int rightChild = 2 * i + 2;
         int maxIndex = i;
 
-        // 如果左孩子存在
-        if(left < len && array[left] > array[maxIndex]){
-            maxIndex = left;
+        if(leftChild < len && array[leftChild] > array[maxIndex]){
+            maxIndex = leftChild;
         }
 
-        // 如果右孩子存在
-        if(right < len && array[right] > array[maxIndex]){
-            maxIndex = right;
+        if(rightChild < len && array[rightChild] > array[maxIndex]){
+            maxIndex = rightChild;
         }
 
-        // 如果最大值索引与父结点不一致，则进行交换
         if(i != maxIndex){
             int temp = array[i];
             array[i] = array[maxIndex];
             array[maxIndex] = temp;
 
-            // 子结点发生变化，如果子结点还有子结点，则需要进行调整
+            // 若maxIndex有孩子结点，则需要继续调整
             heapify(array, maxIndex, len);
         }
     }
@@ -188,12 +187,14 @@ public class Sort_test {
             return;
         }
 
+        // 注意
         int mid = ((right - left) >> 1) + left;
 
+        // 归
         mergeSort(array, left, mid);
         mergeSort(array, mid + 1, right);
 
-        // 合并
+        // 并
         merge(array, left, mid, right);
     }
 
@@ -202,29 +203,70 @@ public class Sort_test {
             return;
         }
 
-        // 用来存放合并后的数组
-        int temp[] = new int[right - left + 1];
-
+        int[] newArray = new int[right - left + 1];
         int left1 = left;
         int left2 = mid + 1;
-        int index = 0;
 
+        int index = 0;
         while(left1 <= mid && left2 <= right){
-            temp[index++] = array[left1] < array[left2] ? array[left1++] : array[left2++];
+            newArray[index++] = array[left1] < array[left2] ? array[left1++] : array[left2++];
         }
 
-        // 将剩余的元素加入到temp数组中
         while(left1 <= mid){
-            temp[index++] = array[left1++];
+            newArray[index++] = array[left1++];
         }
 
         while(left2 <= right){
-            temp[index++] = array[left2++];
+            newArray[index++] = array[left2++];
         }
 
-        // 将temp数组复制到array数组
-        for(index = 0; index < temp.length; index++){
-            array[left + index] = temp[index];
+        for(int i = 0; i < newArray.length; i++){
+            array[left + i] = newArray[i];
+        }
+    }
+
+    // 桶排序
+    public static void bucketSort(int[] array, int bucketSize){
+        if(array == null || array.length <= 1){
+            return;
+        }
+
+        int maxNum = array[0];
+        int minNum = array[0];
+
+        for(int i : array){
+            if(i > maxNum){
+                maxNum = i;
+            }
+            if(i < minNum){
+                minNum = i;
+            }
+        }
+
+        // 桶的个数
+        int bucketCount = (maxNum - minNum) / bucketSize + 1;
+        // 创建桶
+        ArrayList<ArrayList<Integer>> buckets = new ArrayList<ArrayList<Integer>>();
+        for(int i = 0; i < bucketCount; i++){
+            buckets.add(new ArrayList<Integer>());
+        }
+        
+        // 数字装入对应的桶
+        for(int i : array){
+            buckets.get((i - minNum) / bucketSize).add(i);
+        }
+
+        // 对每个桶里的数字排序，再输出到原来的数组中
+        int k = 0;
+        for(ArrayList<Integer> list : buckets){
+            if(list.size() > 0){
+                // 排序
+                Collections.sort(list);
+                // 出桶
+                for(int i = 0; i < list.size(); i++){
+                    array[k++] = list.get(i);
+                }
+            }
         }
     }
 }
