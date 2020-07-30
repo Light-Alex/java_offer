@@ -210,3 +210,8 @@ class Singleton4 {
  * 方式二：find ./ -name "*.*" | xargs grep "hello world"
  * 方式三：find . | xargs grep -ri "hello world"(-i表示忽略字符大小写的差别) 或者 find . | grep -ri "hello world" -l (-l表示只显示文件名)
  */
+
+/**
+ * 进程和线程的区别：
+ * https://zhuanlan.zhihu.com/p/46410285
+ */
