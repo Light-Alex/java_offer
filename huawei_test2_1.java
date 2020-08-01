@@ -65,7 +65,7 @@ import java.util.TreeSet;
  * 用一个TreeSet来存储输入的数字, TreeSet会自动排序和去重
  */
 
-public class test2_1 {
+public class huawei_test2_1 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 

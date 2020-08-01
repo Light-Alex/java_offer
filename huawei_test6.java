@@ -7,7 +7,7 @@
  * 
  * 输出描述: 输出九行，每行九个空格隔开的数字，为解出的答案。
  */
-public class test6 {
+public class huawei_test6 {
     public static void main(String[] args) {
         
     }

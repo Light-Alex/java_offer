@@ -24,7 +24,7 @@ import java.util.Scanner;
  * 
  * 输出例子： joker JOKER
  */
-public class test9 {
+public class huawei_test9 {
     public static void main(String[] args) {
         // String a = "a";
         // System.out.println(a.split(" ").length);

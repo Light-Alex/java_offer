@@ -16,7 +16,7 @@ import java.util.Scanner;
  * 输出例子1:
  * 10
  */
-public class test3 {
+public class huawei_test3 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while(sc.hasNextLine()){

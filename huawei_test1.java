@@ -29,7 +29,7 @@ import java.util.Scanner;
  * 40
  */
 
-public class test1 {
+public class huawei_test1 {
     public static void main(String[] args) {
         // // 输入数据, 参数是文件, 也可以是标准输入
         // Scanner sc = new Scanner(System.in);

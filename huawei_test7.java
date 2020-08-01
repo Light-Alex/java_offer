@@ -36,7 +36,7 @@ import java.util.Scanner;
    5
    9
  */
-public class test7 {
+public class huawei_test7 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while(sc.hasNext()){

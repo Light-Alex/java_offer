@@ -13,13 +13,13 @@ import java.util.ArrayList;
  * 示例： 输入：[1, 1, 2] 输出：2
  */
 
-public class test2 {
+public class qianxin_test2 {
 
     public static ArrayList<Integer> result = new ArrayList<Integer>();
 
     public static void main(String[] args) {
         int[] arr = {1, 1 ,2};
-        int ret = test2.reletive_7(arr);
+        int ret = qianxin_test2.reletive_7(arr);
         System.out.println(ret);
     }
 

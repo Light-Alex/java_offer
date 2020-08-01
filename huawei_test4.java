@@ -24,7 +24,7 @@ import java.util.Scanner;
  * 注意：有多个测试用例
  */
 
-public class test4 {
+public class huawei_test4 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while(sc.hasNextInt()){

@@ -24,7 +24,7 @@ import java.util.Map.Entry;
  * 
  * 输出例子： fpgadrive.c 1325 1
  */
-public class test8 {
+public class huawei_test8 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         HashMap<String, Integer> result = new HashMap<String, Integer>();

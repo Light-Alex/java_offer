@@ -18,7 +18,7 @@ import java.util.TreeSet;
  * 说明： 字符的频率：c-3, b-2, a-2 根据频率排序的字符: b-2, a-2, c-3 b和a字符的频率为2，字典顺序是先a后b
  * 所以最终输出是：aabbccc
  */
-public class test2 {
+public class shopee_test2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while (sc.hasNext()) {

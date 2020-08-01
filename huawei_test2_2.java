@@ -65,7 +65,7 @@ import java.util.TreeSet;
  * 先对数组排序，再输出不重复的数(前后不相等)
  */
 
-public class test2_2 {
+public class huawei_test2_2 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 

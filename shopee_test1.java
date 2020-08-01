@@ -29,7 +29,7 @@ import java.util.Scanner;
    这样可得到最长轨迹[1 2 3 4 4 5 6 7 8 10], 长度为10
  */
 
-public class test1 {
+public class shopee_test1 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while(sc.hasNext()){
