@@ -14,6 +14,11 @@
     ]
     输出: 6
  */
+
+/**
+ * 方法一：暴力解法
+ */
+
 public class leetcode_9_1 {
     public static void main(String[] args) {
         leetcode_9_1 ll = new leetcode_9_1();
